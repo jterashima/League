@@ -3,7 +3,22 @@
 @{
 }
 
-@foreach(var conference in Model.Conferences)
+@foreach (Conference conference in Model.Conferences)
 {
+    <h2>@conference.Name</h2>
 
+    foreach (Division division in Model.GetDivInConference(conference.ConferenceId))
+    {
+        <h3>@division.Name</h3>
+
+        foreach (Team team in Model.GetTeamInDivision(division.DivisionId))
+        {
+            <a asp-page="./Team" asp-route-TeamId ="@team.TeamId">
+                <div>@team.Name</div>
+                <div>@team.Location</div>
+                <div>@team.Win</div>
+                <div>@team.Loss</div>
+            </a>
+        }
+    }
 }    
