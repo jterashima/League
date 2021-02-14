@@ -3,6 +3,10 @@
 @{
 }
 
+<div class="jumbotron p-2">
+    <h1><img src="~/image/nfl/nfl.png" /> National Football Leauge</h1>
+</div>
+
 @foreach (Conference conference in Model.Conferences)
 {
     <h2>@conference.Name</h2>
@@ -18,10 +22,10 @@
             <div style="flex: 0 0 25%">Loss</div>
         </div>
 
-        foreach (Team team in Model.GetTeamInDivision(division.DivisionId))
+        @foreach (Team team in Model.GetTeamInDivision(division.DivisionId))
         {
-            <a asp-page="./Team" asp-route-TeamId="@team.TeamId">
-                <div class="d-flex bg-white text-black-50">
+            <a class="links" asp-page="./Team" asp-route-TeamId="@team.TeamId">
+                <div class="d-flex text-black-50">
                     <div class="p-1" style="flex:0 0 25%">@team.Name</div>
                     <div class="p-1" style="flex:0 0 25%">@team.Location</div>
                     <div class="p-1" style="flex:0 0 25%">@team.Win</div>
@@ -29,5 +33,6 @@
                 </div>
             </a>
         }
+
     }
 }    
